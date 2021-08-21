@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <title>Stock Profit and loss calculator</title>
+    <style>
+        .containers{
+            width: 80%;
+            padding:1rem;
+            margin: auto;
+           
+            font-family:'Poppins';
+            font-size: large;
+            font-weight: bold;
+        }
+        input{
+          
+            display: block;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            height: 2vh;
+            font-family: 'Poppins';
+            font-size: medium;
+            width: 28%;
+            margin-top: 0.5rem;
+            text-align: center;
+      
+        }
+        h1{
+            margin-bottom: 1rem;
+            margin-top: 0rem;        }
+        button{
+           padding: 0.5rem;
+           background-color: black;
+           color: white;
+           margin: 1rem;
+           width: 32%;
+           font-size: medium;
+           font-weight: bold;
+           cursor: pointer;
+           border-radius: 3px;
+
+       }
+       #output{
+           padding: 1rem;
+           margin: 1rem;
+                   
+           width: 70%;
+           font-family: 'Poppins';
+           font-size: larger;
+           font-weight: bold;
+       }
+    </style>
+</head>
+<body> 
+    <center>
+    <div id="container" class="containers">
+        <h2 >Stock Profile & Loss Calculator</h2>
+    <form method="dialog" id="forms">
+        <label for="Initial_Price">Initial Price</label>
+        <input type="number" name="Initial_Price" id="stock" step="0.00001" required />
+        <label for="Quantity">Quantity of Stocks</label>
+        <input type="number" name="Quantity" id="quantity" step="0.00001" required />
+        <label for="Current_Price">Current Price</label>
+        <input type="number" name="Current_Price" id="current" step="0.00001" required />
+        <button type="submit" onclick="submitHandler()">Submit</button>
+        <div id="output"></div>
+    </form>
+
+     
+    </div>
+    <script>
+        function submitHandler(){
+            var initial_price = document.getElementById('stock').value;
+            var quantity = document.getElementById('quantity').value;
+            var current_price = document.getElementById('current').value;
+
+            if(initial_price === "" || quantity === "" || current_price === ""){
+                document.getElementById('output').innerText = "";
+            }
+            else if(parseFloat(initial_price)<=0 || parseFloat(quantity) <=0 || parseFloat(current_price) <= 0 || isNaN(initial_price) || isNaN(quantity) || isNaN(current_price)){
+                document.getElementById('output').innerText = "Please enter values greater than 0 (only numbers are allowed in above fields)";
+            }
+            else{
+                if(parseFloat(current_price) > parseFloat(initial_price)){
+                    var profit = parseFloat(current_price) - parseFloat(initial_price);
+                    var profitPercentage = (profit/initial_price)*100;
+                    if(profitPercentage > 50){
+                        document.body.style.backgroundImage = "url('happy.jpg')";
+                        document.body.style.backgroundRepeat = "no-repeat"
+                        document.body.style.backgroundSize = "cover";
+                       // document.body.style.color = "white";
+                       document.body.style.fontWeight = "bolder";
+                       document.getElementById('output').style.color = "green";
+                       document.getElementById('container').style.backgroundColor = "white";
+                        document.getElementById('output').innerText = "Your total profit is ₹"+(profit*quantity).toFixed(2)+"  You gained "+profitPercentage.toFixed(2)+"%";
+                    }
+                    else{
+                        document.body.style.backgroundImage = "";
+                     
+                
+                       document.body.style.color = "black";
+                       document.getElementById('output').style.color = "green";
+                       document.getElementById('output').style.backgroundColor = "white";
+                        document.getElementById('output').innerText = "Your total profit is ₹"+(profit*quantity).toFixed(2)+"  You gained "+profitPercentage.toFixed(2)+"%";
+                    }
+
+                }
+                else if(parseFloat(current_price) < parseFloat(initial_price)){
+                    var loss = parseFloat(initial_price) - parseFloat(current_price);
+                    var lossPercentage = (loss/initial_price)*100;
+                    if(lossPercentage > 50){
+                        document.body.style.backgroundImage = "url('download.png')";
+                        document.body.style.backgroundRepeat = "no-repeat"
+                        document.body.style.backgroundSize = "cover";
+                        //document.body.style.color = "white";
+                        document.getElementById('output').style.color = "red";
+                       document.getElementById('container').style.backgroundColor = "white";
+                        document.getElementById('output').innerText = "Your total loss is ₹"+Math.abs((loss*quantity).toFixed(2))+"  You lost "+Math.abs(lossPercentage.toFixed(2))+"%";
+                    }
+                    else{
+                        document.body.style.backgroundImage = "";
+                     
+                
+                       document.body.style.color = "black";
+                       document.getElementById('output').style.color = "red";
+                       document.getElementById('output').style.backgroundColor = "white";
+                        document.getElementById('output').innerText = "Your total loss is ₹"+Math.abs((loss*quantity).toFixed(2))+"  You lost "+Math.abs(lossPercentage.toFixed(2))+"%";
+                    }
+                }
+                else {
+                    document.body.style.backgroundImage = "";
+                     
+                
+                     document.body.style.color = "black";
+                     document.getElementById('output').style.color = "black";
+                     //document.getElementById('output').style.backgroundColor = "white";
+                    document.getElementById('output').innerText = "No pain No gain and No gain No pain";
+                }
+            }
+        }
+    </script>
+    </center>
+</body>
+</html>
