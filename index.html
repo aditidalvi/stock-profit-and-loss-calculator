@@ -96,7 +96,7 @@
                        document.body.style.fontWeight = "bolder";
                        document.getElementById('output').style.color = "green";
                        document.getElementById('container').style.backgroundColor = "white";
-                        document.getElementById('output').innerText = "Your total profit is ₹"+(profit*quantity).toFixed(2)+"  You gained "+profitPercentage.toFixed(2)+"%";
+                        document.getElementById('output').innerText = "Your total profit is ₹"+(profit*quantity).toFixed(2)+"  You gained "+(profitPercentage*quantity).toFixed(2)+"%";
                     }
                     else{
                         document.body.style.backgroundImage = "";
@@ -105,7 +105,7 @@
                        document.body.style.color = "black";
                        document.getElementById('output').style.color = "green";
                        document.getElementById('output').style.backgroundColor = "white";
-                        document.getElementById('output').innerText = "Your total profit is ₹"+(profit*quantity).toFixed(2)+"  You gained "+profitPercentage.toFixed(2)+"%";
+                        document.getElementById('output').innerText = "Your total profit is ₹"+(profit*quantity).toFixed(2)+"  You gained "+(profitPercentage*quantity).toFixed(2)+"%";
                     }
 
                 }
@@ -119,7 +119,7 @@
                         //document.body.style.color = "white";
                         document.getElementById('output').style.color = "red";
                        document.getElementById('container').style.backgroundColor = "white";
-                        document.getElementById('output').innerText = "Your total loss is ₹"+Math.abs((loss*quantity).toFixed(2))+"  You lost "+Math.abs(lossPercentage.toFixed(2))+"%";
+                        document.getElementById('output').innerText = "Your total loss is ₹"+Math.abs((loss*quantity).toFixed(2))+"  You lost "+Math.abs((lossPercentage*quantity).toFixed(2))+"%";
                     }
                     else{
                         document.body.style.backgroundImage = "";
@@ -128,7 +128,7 @@
                        document.body.style.color = "black";
                        document.getElementById('output').style.color = "red";
                        document.getElementById('output').style.backgroundColor = "white";
-                        document.getElementById('output').innerText = "Your total loss is ₹"+Math.abs((loss*quantity).toFixed(2))+"  You lost "+Math.abs(lossPercentage.toFixed(2))+"%";
+                        document.getElementById('output').innerText = "Your total loss is ₹"+Math.abs((loss*quantity).toFixed(2))+"  You lost "+Math.abs((lossPercentage*quantity).toFixed(2))+"%";
                     }
                 }
                 else {
